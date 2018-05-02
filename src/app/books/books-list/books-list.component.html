@@ -1,0 +1,29 @@
+<div class="container">
+	<h2 class="text-center">Books Details</h2>
+	<!-- <button class="button" (click)="show = !show">{{show ? 'hide' : 'show'}}</button> -->
+	
+	<div class="table-responsive">
+			<table class="table table-bordered table-striped">
+		<thead class="text-center"> 
+			<th>S.NO</th>
+			<th>Book ID</th>
+			<th>Book Name</th>
+			<th>Author Name</th>
+			<th>Quantity</th>
+      <th>Edit</th>
+      <th>Delete</th>		
+		</thead>
+		<tbody>
+			<tr class="text-center" *ngFor="let book of books; let i = index">
+        <td>{{i+1}}</td>
+				<td>{{book.bookId}}</td>        
+				<td>{{book.bookName}}</td>
+				<td>{{book.bookAuthor}}</td>
+        <td>{{book.bookQuantity}}</td>
+        <td><button class="btn btn-primary" (click)="goToEditBooks(i)">Edit</button></td>
+        <td><button class="btn btn-danger" (click)="goToDeleteBooks(i)">Delete</button></td>
+        </tr>
+		</tbody>
+	</table>
+	</div>
+</div>

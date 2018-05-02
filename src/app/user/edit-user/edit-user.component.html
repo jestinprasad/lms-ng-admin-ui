@@ -1,0 +1,31 @@
+<div class="container-fluid">
+	<h2 class="text-center mb-3">Update User</h2>
+  
+  
+  <section class="row justify-content-center mt-3">
+    <section class="col-12 col-sm-8 col-md-4">
+        <form name="editUserForm"  #editUser="ngForm" (ngSubmit)="updateUser(user._id)">
+
+            <div class="form-group">
+              <label for="user-id">User ID</label>
+              <input type="text" id="user-id" class="form-control" name="userId" [(ngModel)]="user.userId" placeholder="Enter User Id" required>
+            </div>
+            <div class="form-group">
+              <label for="user-name">User Name</label>
+              <input type="text" id="user-name" class="form-control" name="userName" [(ngModel)]="user.userName" placeholder="Enter User Name" required>
+            </div>
+            <div class="form-group">
+              <label for="user-email">User Email</label>
+              <input type="email" id="user-email" class="form-control" name="userEmail" [(ngModel)]="user.userEmail" placeholder="Enter User Email" required>
+            </div>
+            <div class="form-group">
+              <label for="user-phone">Phone Number</label>
+              <input type="number" id="user-phone" class="form-control" name="userPhone" [(ngModel)]="user.userPhone" placeholder="Enter User Phone Number" required>
+            </div>
+            <div>
+              <button type="submit" [disabled]="editUser.invalid || editUser.pristine" class="btn btn-success offset-5">Update</button>
+            </div>
+          </form>
+    </section>
+  </section>
+</div>

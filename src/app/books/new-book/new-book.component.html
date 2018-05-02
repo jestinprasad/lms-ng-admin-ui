@@ -1,0 +1,30 @@
+<div class="container-fluid">
+	<h2 class="text-center mb-3">New Book</h2>  
+  
+  <section class="row justify-content-center mt-3">
+    <section class="col-12 col-sm-8 col-md-4">
+        <form name="newBookForm" #newBook="ngForm" (ngSubmit)="newBookRegister(newBook)">
+
+            <div class="form-group">
+              <label for="book-id">Book ID</label>
+              <input type="text" id="book-id" class="form-control" name="bookId" ngModel placeholder="Enter Book Id" required>
+            </div>
+            <div class="form-group">
+              <label for="book-name">Book Name</label>
+              <input type="text" id="book-name" class="form-control" name="bookName" ngModel placeholder="Enter Book Name" required>
+            </div>
+            <div class="form-group">
+              <label for="book-author">Book Author</label>
+              <input type="text" id="book-author" class="form-control" name="bookAuthor" ngModel placeholder="Enter Author Name" required>
+            </div>
+            <div class="form-group">
+              <label for="book-quantity">Book Quantity</label>
+              <input type="text" id="book-quantity" class="form-control" name="bookQuantity" ngModel placeholder="Enter Book Quantity" required>
+            </div>
+            <div>
+              <button type="submit" [disabled]="newBook.invalid" class="btn btn-success offset-5">Create</button>
+            </div>
+          </form>
+    </section>
+  </section>
+</div>
