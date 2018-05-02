@@ -15,9 +15,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginForm(form){
+   loginForm(form) {
     const {value} = form;
-    console.log(this.userService.loginUser(value));
+    this.userService.loginUser(value)
+    .subscribe(data => {
+      form.reset();
+    })
+   
   }
 
 }

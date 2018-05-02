@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BooksService } from '../books.service';
 import { UsersService } from '../users.service';
+// import { IMultiSelectOption } from 'angular-4-dropdown-multiselect';
 
 @Component({
   selector: 'app-book-borrows',
@@ -9,6 +10,10 @@ import { UsersService } from '../users.service';
   styleUrls: ['./book-borrows.component.css']
 })
 export class BookBorrowsComponent implements OnInit {
+
+  
+  // optionsModel: number[];
+    // myOptions: IMultiSelectOption[];
 
   constructor(
     private http : HttpClient,
@@ -22,22 +27,36 @@ export class BookBorrowsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.get('http://localhost:3232/books').subscribe(data => {
-      const books = data;
-      console.log(books);
-    });
     
-    this.http.get('http://localhost:3232/users').subscribe(data => {
+    this.bookService.getBooks()
+    .subscribe(data => {
+      this.books = data;
+      console.log(this.books);      
+    });
+
+    this.userService.getUser()
+    .subscribe(data => {
       this.users = data;
       console.log(this.users);
-     
-    });
+    }) 
+
+  //   this.myOptions = [
+  //     { id: 1, name: 'Option 1' },
+  //     { id: 2, name: 'Option 2' },
+  // ];
 
   }
 
+  
+
+//   onChange() {
+//     console.log(this.optionsModel);
+// }
+
   bookBorrowForm(form){
     const {value} = form;
-    console.log(this.bookService.borrowBook(value));
+    // console.log(this.bookService.borrowBook(value));
+    console.log(value);
   }
 
 }

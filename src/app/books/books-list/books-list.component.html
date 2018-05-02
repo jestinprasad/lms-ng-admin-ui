@@ -1,8 +1,8 @@
 <div class="container">
-	<h2 class="text-center">Books Details</h2>
+	<h2 class="text-center">Books List</h2>
 	<!-- <button class="button" (click)="show = !show">{{show ? 'hide' : 'show'}}</button> -->
-	<div *ngIf="!books || books.length === 0">
-			No Books
+	<div class="text-center" *ngIf="!books || books.length === 0">
+	<h3>No Books Found! Goto <a routerLink="/books/new">New Books</a> </h3>
 		</div>
 	<div *ngIf="books && books.length > 0" class="table-responsive">
 			<table class="table table-bordered table-striped">

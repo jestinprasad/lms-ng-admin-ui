@@ -17,6 +17,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BookBorrowsComponent } from './book-borrows/book-borrows.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 const routes: Routes = [
   {
@@ -97,8 +98,8 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
-
+    RouterModule.forRoot(routes),
+    AngularMultiSelectModule
   ],
   providers: [
     UsersService,

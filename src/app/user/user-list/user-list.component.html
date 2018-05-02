@@ -1,8 +1,8 @@
 <div class="container">
 	<h2 class="text-center">Users Details</h2>
 	<!-- <button class="button" (click)="show = !show">{{show ? 'hide' : 'show'}}</button> -->
-	<div *ngIf="!users || users.length === 0">
-		No Users
+	<div class="text-center" *ngIf="!users || users.length === 0">
+		<h3>No User Found! Goto <a routerLink="/users/new">New Users</a> </h3>
 	</div>
 	<div *ngIf="users && users.length > 0" class="table-responsive">
 			<table class="table table-bordered table-striped">

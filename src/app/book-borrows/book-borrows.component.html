@@ -1,25 +1,29 @@
 <div class="container-fluid">
-	<h2 class="text-center mb-3">Book Borrows</h2>  
-  
+  <h2 class="text-center mb-3">Book Borrows</h2>
+
   <section class="row justify-content-center mt-3">
     <section class="col-12 col-sm-8 col-md-4">
-        <form name="bookBorrowForm" #bookBorrow="ngForm" (ngSubmit)="bookBorrowForm(bookBorrow)">
+      <form name="bookBorrowForm" #bookBorrow="ngForm" (ngSubmit)="bookBorrowForm(bookBorrow)">
 
-            <div class="form-group">
-              <label for="user-id">User ID</label>
-              <select>
-                <option value="" disabled selected>select a User</option>
-                <option *ngFor="let user of users" [value]="user.userId">{{user.userId}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="book-id">Book ID</label>
-              <input type="text" id="book-id" class="form-control" name="bookId" ngModel placeholder="Enter Book Id" required>
-            </div>
-            <div>
-              <button type="submit" [disabled]="bookBorrow.invalid" class="btn btn-success offset-5">Create</button>
-            </div>
-          </form>
+        <div class="form-group">
+          <label for="user-email">Select User Email</label>
+          <select>
+            <option value="" disabled selected>Select User</option>
+            <option *ngFor="let user of users" name="user._id" [value]="user._id" required>{{user.email}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="book-name">Select Book</label>
+          <select>
+            <option value="" disabled selected>Select Book</option>
+            <option *ngFor="let book of books" name="book._id" [value]="book._id" required>{{book.email}}</option>
+          </select>
+        </div>
+       
+        <div>
+          <button type="submit" [disabled]="bookBorrow.invalid" class="btn btn-success offset-5">Create</button>
+        </div>
+      </form>
     </section>
   </section>
 </div>

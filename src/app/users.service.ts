@@ -35,8 +35,11 @@ export class UsersService {
     return this.http.get(apiURL);
   }
 
-  loginUser(value){
-    return value;
+   loginUser(value){
+    const url = 'http://localhost:3232/api/auth/login';
+     
+    return this.http.post(url, value)
+      
    }
 
    updateUser(id, data){

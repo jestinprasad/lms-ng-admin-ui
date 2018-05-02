@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const User = require('./models/userSchema.js');
+const User = require('./models/user.js');
 const Book = require('./models/bookSchema.js');
 const port = 3232;
 
