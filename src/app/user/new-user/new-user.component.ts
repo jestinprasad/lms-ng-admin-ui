@@ -14,11 +14,11 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  newUserRegister(user) {
-    const {value} = user.form;
+  newUserRegister(form) {
+    const {value} = form;
     this.userService.createUser(value)
     .then(data => {
-      console.log(data);
+      form.reset();
     })
    
   }

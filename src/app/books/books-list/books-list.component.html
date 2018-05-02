@@ -1,8 +1,10 @@
 <div class="container">
 	<h2 class="text-center">Books Details</h2>
 	<!-- <button class="button" (click)="show = !show">{{show ? 'hide' : 'show'}}</button> -->
-	
-	<div class="table-responsive">
+	<div *ngIf="!books || books.length === 0">
+			No Books
+		</div>
+	<div *ngIf="books && books.length > 0" class="table-responsive">
 			<table class="table table-bordered table-striped">
 		<thead class="text-center"> 
 			<th>S.NO</th>
@@ -16,10 +18,10 @@
 		<tbody>
 			<tr class="text-center" *ngFor="let book of books; let i = index">
         <td>{{i+1}}</td>
-				<td>{{book.bookId}}</td>        
-				<td>{{book.bookName}}</td>
-				<td>{{book.bookAuthor}}</td>
-        <td>{{book.bookQuantity}}</td>
+				<td>{{book.id}}</td>        
+				<td>{{book.name}}</td>
+				<td>{{book.author}}</td>
+        <td>{{book.quantity}}</td>
         <td><button class="btn btn-primary" (click)="goToEditBooks(i)">Edit</button></td>
         <td><button class="btn btn-danger" (click)="goToDeleteBooks(i)">Delete</button></td>
         </tr>

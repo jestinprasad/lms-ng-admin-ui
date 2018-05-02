@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../books.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-book',
@@ -8,22 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-book.component.css']
 })
 export class NewBookComponent implements OnInit {
-
   constructor(
-    private bookService : BooksService,
-    private router: Router
-    
+    private bookService : BooksService    
   ) { }
 
   ngOnInit() {
   }
 
-  newBookRegister(book) {
-    const {value} = book.form;
+  newBookRegister(form) {
+    const {value} = form;
     this.bookService.createBook(value)
-    .then(data => {
-      console.log(data);
-      this.router.navigate(['/books/list']);
+    .subscribe(data => {
+      form.reset();
+      
     })
   }
 

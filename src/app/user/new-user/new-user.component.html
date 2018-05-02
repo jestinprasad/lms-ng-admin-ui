@@ -6,20 +6,16 @@
         <form name="newUserForm" #newUser="ngForm" (ngSubmit)="newUserRegister(newUser)">
 
             <div class="form-group">
-              <label for="user-id">User ID</label>
-              <input type="text" id="user-id" class="form-control" name="userId" ngModel placeholder="Enter User Id" required>
-            </div>
-            <div class="form-group">
               <label for="user-name">User Name</label>
-              <input type="text" id="user-name" class="form-control" name="userName" ngModel placeholder="Enter User Name" required>
+              <input type="text" id="user-name" class="form-control" name="name" ngModel placeholder="Enter User Name" required>
             </div>
             <div class="form-group">
               <label for="user-email">User Email</label>
-              <input type="email" id="user-email" class="form-control" name="userEmail" ngModel placeholder="Enter User Email" required>
+              <input type="email" id="user-email" class="form-control" name="email" ngModel placeholder="Enter User Email" required>
             </div>
             <div class="form-group">
               <label for="user-phone">Phone Number</label>
-              <input type="number" id="user-phone" class="form-control" name="userPhone" ngModel placeholder="Enter User Phone Number" required>
+              <input type="number" id="user-phone" class="form-control" name="phone" ngModel placeholder="Enter User Phone Number" required>
             </div>
             <div>
               <button type="submit" [disabled]="newUser.invalid" class="btn btn-success offset-5">Register</button>

@@ -1,12 +1,13 @@
 <div class="container">
 	<h2 class="text-center">Users Details</h2>
 	<!-- <button class="button" (click)="show = !show">{{show ? 'hide' : 'show'}}</button> -->
-	
-	<div class="table-responsive">
+	<div *ngIf="!users || users.length === 0">
+		No Users
+	</div>
+	<div *ngIf="users && users.length > 0" class="table-responsive">
 			<table class="table table-bordered table-striped">
 		<thead class="text-center"> 
 			<th>S.NO</th>
-			<th>User ID</th>
 			<th>User Name</th>
 			<th>User Email</th>
 			<th>User Phone Number</th>
@@ -16,10 +17,9 @@
 		<tbody>
 			<tr class="text-center" *ngFor="let user of users; let i = index">
         <td>{{i+1}}</td>
-				<td>{{user.userId}}</td>        
-				<td>{{user.userName}}</td>
-				<td>{{user.userEmail}}</td>
-        <td>{{user.userPhone}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
         <td><button class="btn btn-primary" (click)="goToEditUsers(i)">Edit</button></td>
         <td><button class="btn btn-danger" (click)="goToDeleteUsers(i)">Delete</button></td>
         </tr>

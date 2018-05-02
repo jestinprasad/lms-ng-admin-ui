@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../books.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +12,6 @@ export class BooksListComponent implements OnInit {
   
   constructor(
     private bookService : BooksService,
-    private http : HttpClient,
     private router: Router
   ) { }
 
@@ -21,7 +19,7 @@ export class BooksListComponent implements OnInit {
   
 
   ngOnInit() {
-    this.http.get('http://localhost:3232/books').subscribe(data => {
+    this.bookService.getBooks().subscribe(data => {
       this.books = data;
     });
   }
@@ -29,6 +27,9 @@ export class BooksListComponent implements OnInit {
     
   goToEditBooks(index) {
     var id = this.books[index]._id;
+    if (!id) {
+      return;
+    }
     console.log(id);
     this.router.navigate(['/books/list', id]);
   }
@@ -36,12 +37,9 @@ export class BooksListComponent implements OnInit {
   goToDeleteBooks(index){
     var id = this.books[index]._id;
     this.bookService.deleteBook(id)
-      .then(data => {
+      .subscribe(data => {
         this.books.splice(index, 1)
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      });
   }
 
 }

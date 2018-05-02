@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const apiURL: string = 'http://localhost:3232/users';
+const apiURL: string = 'http://localhost:3232/api/users';
 
 @Injectable()
 
@@ -25,36 +25,30 @@ export class UsersService {
    
   }
 
-  getUser(data){
-    return this.http.get( apiURL, data)
-    .toPromise()
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  getUserById(id) {
+    const url = `${apiURL}/${id}`;
+    return this.http.get(url);
+  }
+
+
+  getUser(){
+    return this.http.get(apiURL);
   }
 
   loginUser(value){
     return value;
    }
 
-   editUser(value){
-    return value;
+   updateUser(id, data){
+     const url = `${apiURL}/${id}`;
+    return this.http.put(url, data);
    }
 
-   deleteUser(id){
+   deleteUser(id) {
+    const url = `${apiURL}/${id}`;
+     
     return this.http
-    .delete(`${apiURL}/${id}`)
-    .toPromise()
-    .then(data => {
-      return data
-    })
-    .catch(err => {
-      console.error(err)
-    })
+    .delete(url)
    }
 
 }

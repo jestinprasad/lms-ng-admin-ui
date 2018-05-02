@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const apiURL: string = 'http://localhost:3232/books';
+const apiURL: string = 'http://localhost:3232/api/books';
 
 @Injectable()
 export class BooksService {
@@ -10,40 +10,35 @@ export class BooksService {
     private http : HttpClient
   ) { }
 
-  createBook(value){
-   return this.http.post(apiURL, value)
-     .toPromise()
-     .then((value : any) => {
-       return value;
-     })
-     .catch(err => {
-       console.log(err);
-     })
-   
+  getBooks(id?) {
+    let url = apiURL;
+    if (id) {
+      url = `${url}/${id}`
+    }
+
+    return this.http.get(url);
   }
 
-  // updateBook(id){
-  //   return this.http
-  //   .delete(`${apiURL}/${id}`)
-  //   .toPromise()
-  //   .then(data => {
-  //     return data
-  //   })
-  //   .catch(err => {
-  //     console.error(err)
-  //   })
-  //  }
+  getBookById(id) {
+    return this.getBooks(id);
+  }
 
-  deleteBook(id){
+  createBook(value){
+   return this.http.post(apiURL, value)
+     
+  }
+
+  updateBook(id, data) {
+    const url = `${apiURL}/${id}`;
+
     return this.http
-    .delete(`${apiURL}/${id}`)
-    .toPromise()
-    .then(data => {
-      return data
-    })
-    .catch(err => {
-      console.error(err)
-    })
+    .put(url, data);
+   }
+
+  deleteBook(id) {
+    const url = `${apiURL}/${id}`;
+    return this.http
+    .delete(url);
    }
 
   // listBook(value){

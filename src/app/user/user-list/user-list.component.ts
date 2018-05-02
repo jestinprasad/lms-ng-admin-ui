@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../../users.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class UserListComponent implements OnInit {
   constructor(
 
     private router: Router ,
-    private http : HttpClient,
     private userService : UsersService   
 
   ) { }
@@ -21,9 +19,10 @@ export class UserListComponent implements OnInit {
   users : any;
 
   ngOnInit() {
-    this.http.get('http://localhost:3232/users').subscribe(data => {
-      this.users = data;
-    });  }
+
+    this.userService.getUser()
+    .subscribe(data => this.users = data)
+     }
   
     goToEditUsers(index) {
       var id = this.users[index]._id;
@@ -34,12 +33,10 @@ export class UserListComponent implements OnInit {
   goToDeleteUsers(index){
     var id = this.users[index]._id;
     this.userService.deleteUser(id)
-      .then(data => {
+      .subscribe(data => {
         this.users.splice(index, 1)
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      }, error => console.error(error))
+      
   }
 
  
