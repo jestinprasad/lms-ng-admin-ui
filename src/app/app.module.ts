@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
-import { RouterModule, Routes} from '@angular/router';
-import {UsersService} from './users.service';
-import {BooksService} from './books.service';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { UsersService } from './users.service';
+import { BooksService } from './books.service';
 
 import { AppComponent } from './app.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
@@ -18,15 +18,16 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BookBorrowsComponent } from './book-borrows/book-borrows.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
-
+import { AuthGuard } from "./auth.guard";
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },  
+  },
   {
     path: 'books/new',
-    component: NewBookComponent
+    component: NewBookComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'books/list',
@@ -38,21 +39,29 @@ const routes: Routes = [
       },
       {
         path: ':id',
-        component: BooksEditComponent
+        component: BooksEditComponent,
+        canActivate: [AuthGuard]
+
       }
     ]
   },
   {
     path: 'books/edit',
-    component: BooksEditComponent
+    component: BooksEditComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'books/borrow',
-    component: BookBorrowsComponent
+    component: BookBorrowsComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'users/new',
-    component: NewUserComponent
+    component: NewUserComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'users/list',
@@ -60,11 +69,15 @@ const routes: Routes = [
       {
         path: '',
         component: UserListComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
+
       },
       {
         path: ':id',
-        component: EditUserComponent
+        component: EditUserComponent,
+        canActivate: [AuthGuard]
+
       }
     ]
   },
@@ -103,7 +116,8 @@ const routes: Routes = [
   ],
   providers: [
     UsersService,
-    BooksService
+    BooksService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

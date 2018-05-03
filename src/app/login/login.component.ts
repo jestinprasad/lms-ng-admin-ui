@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
    loginForm(form) {
     const {value} = form;
     this.userService.loginUser(value)
-    .subscribe(data => {
+    .subscribe((data: any) => {
+      localStorage.setItem('token', data.token);
       form.reset();
     })
    
